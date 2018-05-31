@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.bootTest.mapper.UserMapper" >
+    <resultMap id="BaseResultMap" type="com.example.bootTest.model.User" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="regtime" property="regtime" jdbcType="DATE" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, name, password, regtime
+    </sql>
+
+    <select id="getAll" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+       FROM user
+    </select>
+
+    <select id="getOne" parameterType="java.lang.Long" resultMap="BaseResultMap" >
+        SELECT 
+       <include refid="Base_Column_List" />
+       FROM user
+       WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.example.bootTest.model.User" >
+       INSERT INTO 
+            user
+            (id, name, password, regtime) 
+        VALUES
+            (#{id}, #{name}, #{password},#{regtime})
+    </insert>
+
+    <update id="update" parameterType="com.example.bootTest.model.User" >
+       UPDATE 
+            user
+       SET 
+        <if test="name != null">name = #{name},</if>
+        <if test="password != null">password = #{password},</if>
+        name = #{name}
+       WHERE 
+            id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long" >
+       DELETE FROM
+             user
+       WHERE 
+             id =#{id}
+    </delete>
+</mapper>

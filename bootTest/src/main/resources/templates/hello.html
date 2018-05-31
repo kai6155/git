@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8"/>
+    <title>bootTest</title>
+    <link href="/css/index.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="container">
+        <h2 th:text="${msg}"></h2>
+    </div>
+    
+    <form action="/file" method="post" enctype="multipart/form-data" >
+    	<input id="file" name="file" type="file"/>
+    	<button type="submit">提交1</button>
+    </form>
+    
+    <span th:text="lalalalla"></span>
+</body>
+</html>
